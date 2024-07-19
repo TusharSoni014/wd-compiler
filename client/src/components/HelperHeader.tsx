@@ -32,9 +32,6 @@ export default function HelperHeader() {
   const isOwner = useSelector(
     (state: RootState) => state.compilerSlice.isOwner
   );
-  const windowWidth = useSelector(
-    (state: RootState) => state.appSlice.currentWidth
-  );
   const [shareBtn, setShareBtn] = useState<boolean>(false);
   const [postTitle, setPostTitle] = useState<string>("My Code");
 
@@ -218,7 +215,6 @@ export default function HelperHeader() {
         )}
       </div>
       <div className="__tab_switcher flex justify-center items-center gap-1">
-        {windowWidth > 500 && <small>Current Language: </small>}
         <Select
           defaultValue={currentLanguage}
           onValueChange={(value) =>
