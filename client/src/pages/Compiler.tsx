@@ -9,13 +9,17 @@ import {
 } from "@/components/ui/resizable";
 import { useLoadCodeMutation } from "@/redux/slices/api";
 import { updateFullCode, updateIsOwner } from "@/redux/slices/compilerSlice";
+import { RootState } from "@/redux/store";
 import { handleError } from "@/utils/handleError";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 export default function Compiler() {
   const { urlId } = useParams();
+  const windowWidth = useSelector(
+    (state: RootState) => state.appSlice.windowWidth
+  );
   const [loadExistingCode, { isLoading }] = useLoadCodeMutation();
   const dispatch = useDispatch();
 
@@ -45,10 +49,10 @@ export default function Compiler() {
     );
   return (
     <ResizablePanelGroup
-      direction="horizontal"
-      className="!h-[calc(100vh-60px)]"
+      direction={windowWidth > 640 ? "horizontal" : "vertical"}
+      className="w-full !h-[calc(100vh-60px)]"
     >
-      <ResizablePanel defaultSize={50} className="h-[500px]">
+      <ResizablePanel defaultSize={50} className="!h-[calc(100vh-60px)]">
         <HelperHeader />
         <CodeEditor />
       </ResizablePanel>

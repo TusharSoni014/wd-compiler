@@ -13,8 +13,12 @@ export default function RenderCode() {
   )}`;
 
   return (
-    <div className="bg-white h-[calc(100dvh-60px)]">
-      <iframe className="w-full h-full" src={iframeCode} />
+    <div className="bg-white h-full sm:h-[calc(100dvh-60px)]">
+      <iframe
+        title="rendered-code"
+        className="w-full h-full"
+        src={iframeCode}
+      />
     </div>
   );
 }

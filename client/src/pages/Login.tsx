@@ -47,7 +47,7 @@ export default function Login() {
 
   return (
     <div className="__login grid-bg w-full h-[calc(100dvh-60px)] flex justify-center items-center flex-col gap-3">
-      <div className="__form_container bg-black border-[1px] py-8 px-4 flex flex-col gap-5 w-[300px]">
+      <div className="__form_container h-full sm:h-fit bg-black border-[1px] py-8 px-4 flex flex-col gap-5 w-full sm:w-[300px]">
         <div className="">
           <h1 className="font-mono text-4xl font-bold text-left">Login</h1>
           <p className="font-mono text-xs">Welcome back fellow coder 😁</p>

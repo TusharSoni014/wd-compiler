@@ -4,7 +4,11 @@ import { Toaster } from "sonner";
 import { useEffect } from "react";
 import { useGetUserDetailsQuery } from "./redux/slices/api";
 import { useDispatch } from "react-redux";
-import { updateCurrentUser, updateIsLoggedIn } from "./redux/slices/appSlice";
+import {
+  updateCurrentUser,
+  updateIsLoggedIn,
+  updateWindowWidth,
+} from "./redux/slices/appSlice";
 import AllRoutes from "./AllRoutes";
 
 function App() {
@@ -19,7 +23,19 @@ function App() {
       dispatch(updateCurrentUser({}));
       dispatch(updateIsLoggedIn(false));
     }
-  }, [data, error]);
+  }, [data, error, dispatch]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      dispatch(updateWindowWidth(window.innerWidth));
+    };
+
+    window.addEventListener("resize", handleResize);
+    
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [dispatch]);
 
   return (
     <>
